@@ -33,7 +33,7 @@ public class Jetpack extends Application {
     private int score = 0;
 
     
-    private final double multiplier = 2;
+    private final double multiplier = 1.6;
     private final double dimensions[] = getDimensions();
     
     private Canvas canvas;
@@ -54,7 +54,7 @@ public class Jetpack extends Application {
     public void start(Stage stage) throws Exception {
     
         // initialize player sprite
-        player.setImage("jetpack/images/player.png", multiplier);
+        player.setImage("jetpack/images/idle.png", multiplier);
         player.setPosition(100, 100);
     
         // set a timer for enemy spawning
@@ -179,12 +179,15 @@ public class Jetpack extends Application {
                         // ON FLOOR
                         player.setVelocity(0, 0);
                         riposiziona(player);
+                        player.setImage("jetpack/images/idle.png", multiplier);
                     }else{
                         if(input.isEmpty() == true){
                             // IN AIR - IDLE
+                            player.setImage("jetpack/images/idle.png", multiplier);
                             fall(player);
                         }else{
                             // IN AIR - FLY
+                            player.setImage("jetpack/images/air.png", multiplier);
                         }
                     }
                     
@@ -276,7 +279,7 @@ public class Jetpack extends Application {
     private void spawnEnemies() {
         // Create a new enemy sprite with an image and a random Y position
         Sprite enemy = new Sprite();
-        enemy.setImage("jetpack/images/spike.png", multiplier);
+        enemy.setImage("jetpack/images/sfera.png", multiplier);
 
         // Set enemy's Y position to a random value between player's Y position +/- 500 pixels
         double playerY = player.getY();
